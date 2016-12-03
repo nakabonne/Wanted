@@ -5,31 +5,23 @@ using GamepadInput;
 using UniRx;
 
 public class PlayerInput : SingletonMonoBehaviour<PlayerInput> {
-	//最後にpublicにする
-//	public GameObject[] players = new GameObject[4];
+	
 
 	public List<IPlayerMove> playerMoveList 
 		= new List<IPlayerMove>();
 
 	// Use this for initialization
 	void Start () {
-//		SerchPlayer ();
-//		SerchController ();
 		Init();
 	}
 
 	public void Init()
 	{
-//		Test ();
 		ObservableGamePadInput.Instance.OnButtonADownAsObservable
 			.Subscribe (x => Debug.Log (x + "push A button"))
 			.AddTo (this.gameObject);
 	}
 
-//	void Test(){
-//		GameDataManager.Instance.AddPlayer (1);
-//		GameDataManager.Instance.AddPlayer (2);
-//	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
