@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class CharacterSelectView : MonoBehaviour {
 
+	public GameObject test;
+
+	[SerializeField]
+	private Transform[] showPos;
+
 	// プレイヤーを表示
-	public void ShowPlayer(){
+	public void ShowPlayer(int playerID){
+		Instantiate (test, showPos [playerID-1].position, Quaternion.identity);
 	}
 }

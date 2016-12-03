@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMove : MonoBehaviour, IPlayerMove {
 
@@ -15,7 +16,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 
 	public void Move(Vector2 dir){
-		Debug.Log (IsGround ());
 		//足元に地面がなかったら移動は不可
 		if (IsGround ()) {
 			this.transform.position += new Vector3(dir.x, 0, dir.y)  * moveSpeed;
@@ -40,7 +40,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		//                  ↓Ray  ↓Rayが当たったオブジェクト ↓距離
 		if (Physics.Raycast(ray,out hitInfo,distance))
 		{
-			Debug.Log (hitInfo.collider.transform.parent.tag);
 			if (hitInfo.collider.transform.parent.tag == "Ground") {
 				return true;
 			}
@@ -49,12 +48,11 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		}
 		return false;
 	}
+
 	//爆風を受けた時の実装
 	public void ReceiveBlast()
 	{
-		Debug.Log ("ダメージを受けた");
-		Rigidbody rigid = GetComponent<Rigidbody> ();
-		rigid.AddForce (0, 0, -3);
+		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);
 	}
 	//落ちているかどうか
 //	bool isDrop()
