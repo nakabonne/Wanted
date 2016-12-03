@@ -11,6 +11,6 @@ public class CharacterSelectView : MonoBehaviour {
 
 	// プレイヤーを表示
 	public void ShowPlayer(int playerID){
-		Instantiate (test, showPos [playerID].position, Quaternion.identity);
+		Instantiate (test, showPos [playerID-1].position, Quaternion.identity);
 	}
 }

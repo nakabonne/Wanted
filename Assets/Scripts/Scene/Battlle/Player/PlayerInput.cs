@@ -20,15 +20,16 @@ public class PlayerInput : SingletonMonoBehaviour<PlayerInput> {
 
 	public void Init()
 	{
-		Test ();
+//		Test ();
 		ObservableGamePadInput.Instance.OnButtonADownAsObservable
-			.Subscribe (x => Debug.Log (x + "push A button"));
+			.Subscribe (x => Debug.Log (x + "push A button"))
+			.AddTo (this.gameObject);
 	}
 
-	void Test(){
-		GameDataManager.Instance.AddPlayer (1);
-		GameDataManager.Instance.AddPlayer (2);
-	}
+//	void Test(){
+//		GameDataManager.Instance.AddPlayer (1);
+//		GameDataManager.Instance.AddPlayer (2);
+//	}
 
 	// Update is called once per frame
 	void FixedUpdate () {

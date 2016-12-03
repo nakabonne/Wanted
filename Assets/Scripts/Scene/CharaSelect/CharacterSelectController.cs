@@ -30,23 +30,22 @@ public class CharacterSelectController : SingletonMonoBehaviour<CharacterSelectC
 	}
 
 	void Start(){
-		ObservableGamePadInput.Instance.OnStartButtonDownAsObservable
-			.Subscribe (x => Debug.Log (x))
+		ObservableGamePadInput.Instance.OnButtonADownAsObservable
+			.Where(x=>IsNewController(x))
+			.Subscribe (x => _model.AddPlayer(x))
 			.AddTo (this.gameObject);
 
-//		this.UpdateAsObservable()
-//			.Where(_=>
-//				GamePad.GetButtonDown(GamePad.Button.Start,GamePad.Index.Any))
-//			.Where(x=>)
+		ObservableGamePadInput.Instance.OnStartButtonDownAsObservable
+			.Where (x => x == 1)
+			.Where (x => _model.PlayerCount > 1)
+			.Subscribe (_ => {
+				_model.SavePlayerIDList();
+				MySceneManager.GoToMainGame ();
+			});
 	}
 
-	bool GetNewController(){
-		
-//		if(GamePad.GetButtonDown(GamePad.Button.Start,GamePad.Index.Any))
-		return false;
+	// 新規コントローラーか確かめる
+	bool IsNewController(int playerID){
+		return !_model.IsExistPlayer (playerID);
 	}
-
-
-
-
 }

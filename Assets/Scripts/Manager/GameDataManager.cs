@@ -9,8 +9,8 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager> {
 		get{ return _playerIDList;}
 	}
 
-	public void AddPlayer(int id){
-		_playerIDList.Add (id);
+	public void SetPlayerIDList(List<int> list){
+		_playerIDList = list;
 	}
 
 }
