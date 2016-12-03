@@ -15,7 +15,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 
 	public void Move(Vector2 dir){
-		Debug.Log (IsGround ());
 		//足元に地面がなかったら移動は不可
 		if (IsGround ()) {
 			this.transform.position += new Vector3(dir.x, 0, dir.y)  * moveSpeed;
@@ -40,7 +39,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		//                  ↓Ray  ↓Rayが当たったオブジェクト ↓距離
 		if (Physics.Raycast(ray,out hitInfo,distance))
 		{
-			Debug.Log (hitInfo.collider.transform.parent.tag);
 			if (hitInfo.collider.transform.parent.tag == "Ground") {
 				return true;
 			}
