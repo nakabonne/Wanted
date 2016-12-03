@@ -42,20 +42,20 @@ public class Stage : MonoBehaviour {
 			yield return new WaitForSeconds (0.1f);
 			if (0.9f <= rotate.z && rotate.z <= 1) {
 				//forward
-				x = (int)position.x + i;
-				z = (int)position.z;
+				x = Mathf.RoundToInt(position.x) + i;
+				z = Mathf.RoundToInt(position.z);
 			} else if (0.9f <= rotate.x && rotate.x <= 1) {
 				//right
-				x = (int)position.x;
-				z = (int)position.z - i;
+				x = Mathf.RoundToInt(position.x);
+				z = Mathf.RoundToInt(position.z) - i;
 			} else if (-1 <= rotate.z && rotate.y <= -0.9f) {
 				//back
-				x = (int)position.x - i;
-				z = (int)position.z;
+				x = Mathf.RoundToInt(position.x) - i;
+				z = Mathf.RoundToInt(position.z);
 			} else if (-1 <= rotate.x && rotate.x <= -0.9f) {
 				//left
-				x = (int)position.x;
-				z = (int)position.z + i;
+				x = Mathf.RoundToInt(position.x);
+				z = Mathf.RoundToInt(position.z) + i;
 			}
 			stageCube [x, z].transform.DOMoveY (-20f, 5f).OnComplete(() => {
 				//Debug.Log("おわた");

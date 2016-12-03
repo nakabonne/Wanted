@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 	void OnChangedStatus(BattleStatus newStatus){
 		switch (newStatus) {
 		case BattleStatus.WAIT:
+			BattleUI.Instance.SpawnAll ();
 			TimeManager.GetComponent<TimeManager> ().InitTimer ();
 			StartCoroutine (wait ());
 			break;
