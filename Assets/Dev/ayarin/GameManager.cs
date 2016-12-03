@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	enum BattleStatus{
+	public enum BattleStatus{
 		WAIT,
 		START,
 		END
