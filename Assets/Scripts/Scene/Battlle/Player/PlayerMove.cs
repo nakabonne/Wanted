@@ -9,9 +9,13 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	public GameObject playerModelObj;
 
+	Vector3 startPos;
 	// Use this for initialization
 	void Start () {
 		PlayerInput.Instance.playerMoveList.Add (this);
+		//最初のポジションを保存
+		startPos = transform.position;
+
 	}
 
 
@@ -66,6 +70,14 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		if (gameObject.tag == "Player4") {
 			playerModel.stock4--;
 		}
+		Invoke ("Return", 2.0f);
+	}
+
+	//復活する
+	void Return()
+	{
+		//位置を戻す
+		transform.position = startPos;
 	}
 
 	//爆風を受けた時の処理
