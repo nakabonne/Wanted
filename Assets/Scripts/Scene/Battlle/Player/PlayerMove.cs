@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	public float moveSpeed = 0.1f;
 
-
+	public GameObject playerModelObj;
 
 	// Use this for initialization
 	void Start () {
@@ -40,16 +40,35 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		//                  ↓Ray  ↓Rayが当たったオブジェクト ↓距離
 		if (Physics.Raycast(ray,out hitInfo,distance))
 		{
+			//足元が地面なら
 			if (hitInfo.collider.transform.parent.tag == "Ground") {
 				return true;
+			} else {
+				CutBackStock ();
 			}
-
-
 		}
 		return false;
 	}
 
-	//爆風を受けた時の実装
+	//ストックを減らす
+	void CutBackStock()
+	{
+		PlayerModel playerModel = playerModelObj.GetComponent<PlayerModel> ();
+		if (gameObject.tag == "Player1") {
+			playerModel.stock1--;
+		}
+		if (gameObject.tag == "Player2") {
+			playerModel.stock2--;
+		}
+		if (gameObject.tag == "Player3") {
+			playerModel.stock3--;
+		}
+		if (gameObject.tag == "Player4") {
+			playerModel.stock4--;
+		}
+	}
+
+	//爆風を受けた時の処理
 	public void ReceiveBlast()
 	{
 		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);

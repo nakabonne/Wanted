@@ -25,9 +25,13 @@ public class CharacterSelectView : MonoBehaviour {
 			break;
 		
 		}
+		// リソースからプレハブ取得
 		GameObject obj = ResourcesManager.Instance.GetModel(charaName);
+		// 生成
 		GameObject chara = Instantiate (obj, showPos [playerID-1].position, showPos[playerID-1].rotation) as GameObject;
+		// スケール調節
 		chara.transform.localScale = Vector3.one * 4f;
+		EffectManager.Instance.Spawn (EffectType.Spawn, showPos [playerID - 1].position);
 
 	}
 
