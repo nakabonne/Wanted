@@ -24,12 +24,10 @@ public class Stage : MonoBehaviour {
 	//ステージ生成
 	public void CreateStage(){
 		GameObject clone;
-		GameObject floorParent = new GameObject ("Stage");
 
 		for (int x = 0; x < n ; x++) {
 			for (int z = 0; z < n ; z++) {
-				clone = Instantiate (stageCubePrefab, new Vector3 (x, -0.5f, z), Quaternion.identity);
-				clone.transform.parent = floorParent.transform;
+				clone = Instantiate (stageCubePrefab, new Vector3 (x, -0.5f, z), Quaternion.identity, this.transform);
 				stageCube [x,z] = clone;
 			}
 		}

@@ -3,50 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : SingletonMonoBehaviour<PlayerInput> {
 	//最後にpublicにする
-	public GameObject[] players = new GameObject[4];
+//	public GameObject[] players = new GameObject[4];
+
+	private Dictionary<int, GamePad.Index> _inputMap
+		= new Dictionary<int, GamePad.Index>();
+
+	public List<IPlayerMove> playerMoveList 
+		= new List<IPlayerMove>();
 
 	// Use this for initialization
 	void Start () {
-		SerchPlayer ();
-		SerchController ();
-	}
-	//プレイヤーをサーチ
-	void SerchPlayer()
-	{
-		players [0] = GameObject.FindGameObjectWithTag ("Player1");
-		players [1] = GameObject.FindGameObjectWithTag ("Player2");
-		players [2] = GameObject.FindGameObjectWithTag ("Player3");
-		players [3] = GameObject.FindGameObjectWithTag ("Player4");
+//		SerchPlayer ();
+//		SerchController ();
+		Init();
 	}
 
-	void SerchController()
+	public void Init()
 	{
-		var state = GamePad.GetState (GamePad.Index.One);
-		//Debug.Log (state);
+		Test ();
+		var list = GameDataManager.Instance.PlayerIDList;
+		for (int i = 0; i < list.Count; i++){
+			_inputMap.Add (list [i], (GamePad.Index)(i + 1));
+		}
+	}
+
+	void Test(){
+		GameDataManager.Instance.AddPlayer (0);
+		GameDataManager.Instance.AddPlayer (1);
 	}
 
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
 
-	}
-
-	public void Move()
-	{
-		if (Input.GetKey("up")) {
-			transform.position += transform.forward * 0.1f;
-		} 
-		if (Input.GetKey ("down")) {
-			transform.position += new Vector3 (0, 0, -1) * 0.1f;
-		}
-
-		if (Input.GetKey("right")) {
-			transform.position += transform.right * 0.1f;
-		}
-		if (Input.GetKey ("left")) {
-			transform.position += new Vector3 (-1, 0, 0) * 0.1f;
+		// 入力受付
+		for(int i=0;i<_inputMap.Count;i++){
+			if(GamePad.GetButtonDown(GamePad.Button.A, _inputMap[i])){
+				Debug.Log(i+ "push A button");
+			}
+			// IDから情報取得
+			GamepadState state = GamePad.GetState (_inputMap[i]);
+			Debug.Log(state.LeftStickAxis);
+			Debug.Log (playerMoveList [i]);
+			playerMoveList [i].Move (state.LeftStickAxis);
 		}
 	}
 }

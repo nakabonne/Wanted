@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDataManager : MonoBehaviour {
+public class GameDataManager : SingletonMonoBehaviour<GameDataManager> {
 
-	// Use this for initialization
-	void Start () {
-		
+	private List<int> _playerIDList = new List<int>();
+	public List<int> PlayerIDList{
+		get{ return _playerIDList;}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void AddPlayer(int id){
+		_playerIDList.Add (id);
 	}
+
 }
