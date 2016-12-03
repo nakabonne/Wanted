@@ -41,6 +41,10 @@ public class ObservableGamePadInput : SingletonMonoBehaviour<ObservableGamePadIn
 			if (GamePad.GetButtonDown (GamePad.Button.A, index)) {
 				_buttonASubject.OnNext (i);
 			}
+
+			if (GamePad.GetButtonDown (GamePad.Button.Y, index)) {
+				_buttonYSubject.OnNext (i);
+			}
 		}
 	}
 }
