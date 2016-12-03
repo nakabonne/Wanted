@@ -13,6 +13,9 @@ public class PlayerInput : SingletonMonoBehaviour<PlayerInput> {
 	public Dictionary<int, IPlayerAttack> playerAttackMap
 		= new Dictionary<int, IPlayerAttack>();
 
+	public Dictionary<int, PlayerView> playerViewMap
+	= new Dictionary<int, PlayerView> ();
+
 	public bool canInput = false;
 
 
@@ -47,7 +50,14 @@ public class PlayerInput : SingletonMonoBehaviour<PlayerInput> {
 		
 			// IDから情報取得
 			GamepadState state = GamePad.GetState (index);
-			playerMoveMap [i+1].Move (state.LeftStickAxis);
+			Vector2 moveVec = state.LeftStickAxis;
+			playerMoveMap [i+1].Move (moveVec);
+			if (moveVec.sqrMagnitude > 0) {
+				playerViewMap [i + 1].StartRun ();
+			} else {
+				playerViewMap [i + 1].StopRun ();
+			}
+
 		}
 	}
 }
