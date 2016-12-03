@@ -43,26 +43,26 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 		Vector3 pos = Vector3.zero;
 		switch (playerID) {
 		case 1:
-			charaName = "Utc";
-			pos = new Vector3 (0, 0, 11);
+			charaName = "BattleUtc";
+			pos = new Vector3 (0, 1, 11);
 			break;
 		case 2:
-			charaName = "Misaki";
-			pos = new Vector3 (11, 0, 11);
+			charaName = "BattleMisaki";
+			pos = new Vector3 (11, 1, 11);
 			break;
 		case 3:
-			charaName = "Yuko";
-			pos = new Vector3 (0, 0, 0);
+			charaName = "BattleYuko";
+			pos = new Vector3 (0, 1, 0);
 			break;
 		case 4:
 			// 4体目のプレハブを呼ぶ
-			pos = new Vector3(11,0,0);
+			pos = new Vector3(11,1,0);
 			break;
 
 		}
 		GameObject obj = ResourcesManager.Instance.GetModel(charaName);
-		GameObject chara = Instantiate (obj, pos, Quaternion.identity) as GameObject;
-		chara.transform.localScale = Vector3.one * 4f;
+		GameObject chara = Instantiate (obj, pos, Quaternion.Euler(new Vector3(0,180,0))) as GameObject;
+		chara.transform.localScale = Vector3.one * 2f;
 	}
 
 	IEnumerator SpawnCoroutine(){

@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField]
 	public BattleStatus battleStatus;
+
+	void Start(){
+		SetBattleStatus (BattleStatus.WAIT);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator wait(){
+		yield return new WaitForSeconds (1f);
 		UIManager.GetComponent<BattleUI> ().setCountDown (3);
 		yield return new WaitForSeconds (1f);
 		UIManager.GetComponent<BattleUI> ().setCountDown (2);

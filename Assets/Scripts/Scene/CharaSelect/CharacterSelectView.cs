@@ -25,6 +25,8 @@ public class CharacterSelectView : MonoBehaviour {
 			break;
 		
 		}
+
+		Debug.Log (playerID);
 		// リソースからプレハブ取得
 		GameObject obj = ResourcesManager.Instance.GetModel(charaName);
 		// 生成
