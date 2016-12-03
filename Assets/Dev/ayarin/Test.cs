@@ -16,6 +16,9 @@ public class Test : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown("space")){
 			StartCoroutine(StageManager.GetComponent<Stage>().Beam (this.transform.position,this.transform.forward));
+		}
+
+		if(Input.GetKeyDown(KeyCode.S)){
 			GameManager.GetComponent<GameManager> ().SetBattleStatus (global::GameManager.BattleStatus.WAIT);
 		}
 	}

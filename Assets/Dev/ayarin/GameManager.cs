@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public GameObject TimeManager;
+	public GameObject UIManager;
 
 	public enum BattleStatus{
 		WAIT,
@@ -43,7 +44,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator wait(){
-		yield return new WaitForSeconds (3f);
+		UIManager.GetComponent<BattleUI> ().setCountDown (3);
+		yield return new WaitForSeconds (1f);
+		UIManager.GetComponent<BattleUI> ().setCountDown (2);
+		yield return new WaitForSeconds (1f);
+		UIManager.GetComponent<BattleUI> ().setCountDown (1);
+		yield return new WaitForSeconds (1f);
+		UIManager.GetComponent<BattleUI> ().setCountDown (0);
 		SetBattleStatus (BattleStatus.START);
 	}
 
