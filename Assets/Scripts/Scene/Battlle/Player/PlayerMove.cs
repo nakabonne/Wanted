@@ -49,6 +49,13 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		}
 		return false;
 	}
+	//爆風を受けた時の実装
+	public void ReceiveBlast()
+	{
+		Debug.Log ("ダメージを受けた");
+		Rigidbody rigid = GetComponent<Rigidbody> ();
+		rigid.AddForce (0, 0, -3);
+	}
 	//落ちているかどうか
 //	bool isDrop()
 //	{

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
-
+	
+	public GameObject bomb;
+	public GameObject beam;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,18 +14,21 @@ public class PlayerAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
-			Beam ();
+			PutBom ();
+		}
+		if (Input.GetMouseButtonDown (1)) {
+			PutBeam ();
 		}
 		
 	}
 	//ビームを出す
-	void Beam()
+	void PutBeam()
 	{
-		Debug.Log ("ビーム");
+		Instantiate (beam, transform.position, Quaternion.identity);
 	}
-
-	void Bom()
+	//ボムを置く
+	void PutBom()
 	{
-		
+		Instantiate (bomb, transform.position, Quaternion.identity);
 	}
 }
