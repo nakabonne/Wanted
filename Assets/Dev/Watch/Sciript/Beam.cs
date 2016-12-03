@@ -11,13 +11,19 @@ public class Beam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Move ();
 		BreakeGround ();
+	}
+
+	void Move()
+	{
+		transform.Translate (0, 0, 0.5f);
 	}
 	//地面を破壊する
 	void BreakeGround()
 	{
 		//Rayの作成　　　　　　　↓Rayを飛ばす原点　　　↓Rayを飛ばす方向
-		Ray ray = new Ray (transform.position, new Vector3 (0, -1, 0));
+		Ray ray = new Ray (transform.position, Vector3.down);
 
 		//Rayが当たったオブジェクトの情報を入れる箱
 		RaycastHit hit;
@@ -26,7 +32,7 @@ public class Beam : MonoBehaviour {
 		int distance = 10;
 
 		//Rayの可視化    ↓Rayの原点　　　　↓Rayの方向　　　　　　　　　↓Rayの色
-		Debug.DrawLine (ray.origin, ray.direction * distance, Color.red);
+		Debug.DrawLine (ray.origin, Vector3.down * distance, Color.red);
 
 		//もしRayにオブジェクトが衝突したら
 		//                  ↓Ray  ↓Rayが当たったオブジェクト ↓距離

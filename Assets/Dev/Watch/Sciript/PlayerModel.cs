@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour {
 
-	public int stock;
+	public int stock1 = 5;
+	public int stock2 = 5;
+	public int stock3 = 5;
+	public int stock4 = 5;
 
 	// Use this for initialization
 	void Start () {
