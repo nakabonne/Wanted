@@ -33,8 +33,20 @@ public class PlayerInput : MonoBehaviour {
 
 	}
 
-	void Move()
+	public void Move()
 	{
+		if (Input.GetKey("up")) {
+			transform.position += transform.forward * 0.1f;
+		} 
+		if (Input.GetKey ("down")) {
+			transform.position += new Vector3 (0, 0, -1) * 0.1f;
+		}
 
+		if (Input.GetKey("right")) {
+			transform.position += transform.right * 0.1f;
+		}
+		if (Input.GetKey ("left")) {
+			transform.position += new Vector3 (-1, 0, 0) * 0.1f;
+		}
 	}
 }

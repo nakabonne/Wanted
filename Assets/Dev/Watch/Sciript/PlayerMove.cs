@@ -6,10 +6,13 @@ public class PlayerMove : MonoBehaviour {
 
 	//Rayが当たったオブジェクトの情報を入れる箱
 	RaycastHit hitInfo;
-
+	//PlayerInputクラスをもつインスタンス
+	public GameObject playerInputObj;
+	PlayerInput playerInput;
 	// Use this for initialization
 	void Start () {
-		
+		playerInputObj = GameObject.Find ("PlayerInputObj");
+		playerInput = playerInputObj.GetComponent<PlayerInput> ();
 	}
 	
 	// Update is called once per frame
@@ -17,26 +20,10 @@ public class PlayerMove : MonoBehaviour {
 
 		//足元に地面がなかったら移動は不可
 		if (IsGround ()) {
-			Move ();
+			playerInput.Move ();
 		}
 	}
-	//移動を管理
-	void Move()
-	{
-		if (Input.GetKey("up")) {
-			transform.position += transform.forward * 0.1f;
-		} 
-		if (Input.GetKey ("down")) {
-			transform.position += new Vector3 (0, 0, -1) * 0.1f;
-		}
 
-		if (Input.GetKey("right")) {
-			transform.position += transform.right * 0.1f;
-		}
-		if (Input.GetKey ("left")) {
-			transform.position += new Vector3 (-1, 0, 0) * 0.1f;
-		}
-	}
 	//地面があるかチェックするメソッド
 	bool IsGround()
 	{
