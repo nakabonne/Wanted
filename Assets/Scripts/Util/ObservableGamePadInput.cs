@@ -18,6 +18,12 @@ public class ObservableGamePadInput : SingletonMonoBehaviour<ObservableGamePadIn
 		get{ return _buttonASubject; }
 	}
 
+	private Subject<int> _buttonYSubject = new Subject<int>();
+	public IObservable<int> OnButtonYDownAsObservable{
+		get{ return _buttonYSubject; }
+	}
+
+
 	void Start(){
 		this.UpdateAsObservable ()
 			.Subscribe (_ => GetGamePadInput ());
