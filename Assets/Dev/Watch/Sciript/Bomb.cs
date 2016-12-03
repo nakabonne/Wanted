@@ -106,7 +106,7 @@ public class Bomb : MonoBehaviour {
 			explosions [0].transform.localScale -= new Vector3 (-1, 0, 0);
 			break;
 		}
-
+		Destroy (gameObject);
 
 //		//四方にエフェクトを生成
 //		for(int i=0; i<4; i++)
@@ -141,5 +141,7 @@ public class Bomb : MonoBehaviour {
 //			transform.Rotate(new Vector3(0, 1, 0), 90);
 //		}
 	}
+
+
 
 }
