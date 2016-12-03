@@ -9,10 +9,13 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	public GameObject playerModelObj;
 
+	private PlayerModel _model;
+
 	Vector3 startPos;
 	// Use this for initialization
 	void Start () {
-		PlayerInput.Instance.playerMoveList.Add (this);
+		_model = this.GetComponent<PlayerModel> ();
+		PlayerInput.Instance.playerMoveMap.Add (_model.PlayerID, this);
 		//最初のポジションを保存
 		startPos = transform.position;
 
@@ -61,15 +64,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		if (gameObject.tag == "Player1") {
 			playerModel.stock1--;
 		}
-		if (gameObject.tag == "Player2") {
-			playerModel.stock2--;
-		}
-		if (gameObject.tag == "Player3") {
-			playerModel.stock3--;
-		}
-		if (gameObject.tag == "Player4") {
-			playerModel.stock4--;
-		}
+
 		Invoke ("Return", 2.0f);
 	}
 

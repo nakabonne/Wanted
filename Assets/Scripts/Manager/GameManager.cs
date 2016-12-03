@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject TimeManager;
+	public TimeManager timeManager;
 	public GameObject UIManager;
 
 	public enum BattleStatus{
@@ -30,14 +30,16 @@ public class GameManager : MonoBehaviour {
 		switch (newStatus) {
 		case BattleStatus.WAIT:
 			BattleUI.Instance.SpawnAll ();
-			TimeManager.GetComponent<TimeManager> ().InitTimer ();
+			timeManager.InitTimer ();
 			StartCoroutine (wait ());
 			break;
 		case BattleStatus.START:
-			TimeManager.GetComponent<TimeManager>().StartTimer();
+			timeManager.StartTimer ();
+			PlayerInput.Instance.canInput = true;
 			break;
 		case BattleStatus.END:
-			TimeManager.GetComponent<TimeManager> ().EndCount ();
+			timeManager.EndCount ();
+			PlayerInput.Instance.canInput = false;
 			Debug.Log ("end");
 			break;
 		}
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void WatchTimer(){
-		if (TimeManager.GetComponent<TimeManager> ().time <= 0 && battleStatus  != BattleStatus.END) {
+		if (timeManager.time <= 0 && battleStatus  != BattleStatus.END) {
 			SetBattleStatus (BattleStatus.END);
 		}
 	}

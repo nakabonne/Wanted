@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPlayerAttack : MonoBehaviour {
+public interface IPlayerAttack {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	void PutBomb ();
+	void PutBeam();
 }
