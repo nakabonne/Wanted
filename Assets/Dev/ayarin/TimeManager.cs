@@ -1,21 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour {
 
 	[SerializeField]
 	static float timeLimit = 100;
-	float time;
-
+	public float time = timeLimit;
+	[SerializeField]
 	bool isStarted = false;
 
-	public Text timer;
-
 	// Use this for initialization
-	void Start () {
-		
+	void Start () {		
 	}
 	
 	// Update is called once per frame
@@ -23,17 +19,23 @@ public class TimeManager : MonoBehaviour {
 		if (isStarted) {
 			CountDown ();
 		}
-
 	}
 
-	void InitTimer(){
+	public void InitTimer(){
 		time = timeLimit;
+	}
+
+	public void StartTimer(){
+		isStarted = true;
 	}
 
 	void CountDown(){
 		if (time > 0) {
 			time -= Time.deltaTime;
-			timer.text = time.ToString ();
 		}
+	}
+
+	public void EndCount(){
+		isStarted = false;
 	}
 }
