@@ -28,7 +28,7 @@ public class Stage : MonoBehaviour {
 
 		for (int x = 0; x < n ; x++) {
 			for (int z = 0; z < n ; z++) {
-				clone = Instantiate (stageCubePrefab, new Vector3 (x, 0, z), Quaternion.identity);
+				clone = Instantiate (stageCubePrefab, new Vector3 (x, -0.5f, z), Quaternion.identity);
 				clone.transform.parent = floorParent.transform;
 				stageCube [x,z] = clone;
 			}
@@ -60,14 +60,14 @@ public class Stage : MonoBehaviour {
 				z = (int)position.z + i;
 			}
 			stageCube [x, z].transform.DOMoveY (-20f, 5f).OnComplete(() => {
-				Debug.Log("おわた");
+				//Debug.Log("おわた");
 				Repop(x, z);
 			});
 		}
 	}
 
 	public void Repop(int x, int z){
-		Debug.Log (x + "," + z + "あがる");
-		stageCube [x, z].transform.position = new Vector3 (x, 0, z);
+		//Debug.Log (x + "," + z + "あがる");
+		stageCube [x, z].transform.position = new Vector3 (x, -0.5f, z);
 	}
 }
