@@ -18,6 +18,9 @@ public class TimeManager : MonoBehaviour {
 	void Update () {
 		if (isStarted) {
 			CountDown ();
+			if (time < 0.0f) {
+				time = 0.0f;
+			}
 		}
 	}
 

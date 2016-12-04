@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	public void PutBeam()
 	{
 		Debug.Log ("Beamうつよ");
-		Stage.Instance.Beam (this.transform.position, this.transform.forward);
+		Stage.Instance.Beam (this.transform.position, this.transform.eulerAngles.y);
 	}
 	//ボムを置く
 	public void PutBomb()

@@ -34,35 +34,34 @@ public class Stage : SingletonMonoBehaviour<Stage> {
 	}
 
 	//ビーム Beam(transform.position, transform.forward);
-	public void Beam(Vector3 position, Vector3 rotate){
+	public void Beam(Vector3 position, float rotate){
 		StartCoroutine(BeamCoroutine(position,rotate));
 	}
 
-	private IEnumerator BeamCoroutine(Vector3 position, Vector3 rotate){
-		Debug.Log ("あやりんのビーム");
+	private IEnumerator BeamCoroutine(Vector3 position, float rotate){
 		Debug.Log (position + ", " + rotate);
 		//stageCube [(int)position.x, (int)position.z].transform.DOMoveY (-20f, 5f);
 		for (int i = 1; i < b+1; i++) {
 			int x = 100, z = 100;
 			yield return new WaitForSeconds (0.2f);
-			if (0.9f <= rotate.x && rotate.x <= 1.0f) {
-				//back
+			if (Mathf.RoundToInt(rotate) == 270) {
+				//left
 				x = Mathf.RoundToInt(position.x) - i;
 				z = Mathf.RoundToInt(position.z);
-			} else if (0.9f <= rotate.z && rotate.z <= 1.0f) {
-				//left
+			} else if (Mathf.RoundToInt(rotate) == 0) {
+				//back
 				x = Mathf.RoundToInt(position.x);
 				z = Mathf.RoundToInt(position.z) + i;
-			} else if (-1.0f <= rotate.x && rotate.x <= -0.9f) {
-				//forward
+			} else if (Mathf.RoundToInt(rotate) == 90) {
+				//right
 				x = Mathf.RoundToInt(position.x) + i;
 				z = Mathf.RoundToInt(position.z);
-			} else if (-1.0f <= rotate.z && rotate.z <= -0.9f) {
-				//right
+			} else if (Mathf.RoundToInt(rotate) == 180) {
+				//forward
 				x = Mathf.RoundToInt(position.x);
 				z = Mathf.RoundToInt(position.z) - i;
 			}
-			Debug.Log (x + ", " + z);
+			if (x >= n || z >= n || x < 0 || z < 0)	break;
 			stageCube [x, z].transform.DOMoveY (-20f, 5f).OnComplete(() => {
 				//Debug.Log("おわた");
 				Repop(x, z);

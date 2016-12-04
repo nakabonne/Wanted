@@ -26,7 +26,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	}
 
 	public void Move(Vector2 dir){
-		Debug.Log (dir);
 		if (rotate != dir) {
 			rotate = dir;
 			if (rotate == Vector2.down) {

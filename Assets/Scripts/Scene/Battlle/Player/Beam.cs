@@ -41,7 +41,7 @@ public class Beam : MonoBehaviour {
 			//Rayが当たったオブジェクトのtagがGroundだったら
 			if (hit.collider.tag == "Ground"){
 				//ビームをうつ
-				Stage.Instance.Beam (this.transform.position, this.transform.forward);
+				Stage.Instance.Beam (this.transform.position, this.transform.eulerAngles.y);
 				Debug.Log ("へいへいへい");
 
 				//GameObject ground = hit.collider.gameObject;
