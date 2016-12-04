@@ -81,7 +81,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		//落ちた時の処理
 		if (this.transform.position.y <= -0.5f && isStock) {
-
+			
 			//ストックを減らす
 			CutBackStock ();
 			isStock = false;
