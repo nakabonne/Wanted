@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Stage : MonoBehaviour {
+public class Stage : SingletonMonoBehaviour<Stage> {
 
 	//マス目の数
 	static int n = 12;
@@ -35,7 +35,7 @@ public class Stage : MonoBehaviour {
 
 	//ビーム Beam(transform.position, transform.forward);
 	public IEnumerator Beam(Vector3 position, Vector3 rotate){
-		
+		Debug.Log ("あやりんのビーム");
 		//stageCube [(int)position.x, (int)position.z].transform.DOMoveY (-20f, 5f);
 		for (int i = 1; i < b+1; i++) {
 			int x = 100, z = 100;

@@ -7,8 +7,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	public float moveSpeed = 0.1f;
 
-	public GameObject playerModelObj;
-
 	private PlayerModel _model;
 
 	Vector3 startPos;
@@ -60,7 +58,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//ストックを減らす
 	void CutBackStock()
 	{
-		PlayerModel playerModel = playerModelObj.GetComponent<PlayerModel> ();
+		PlayerModel playerModel = GetComponent<PlayerModel> ();
 		if (gameObject.tag == "Player1") {
 			playerModel.stock1--;
 		}
