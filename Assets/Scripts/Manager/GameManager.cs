@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		WatchTimer ();
+		WatchRanking ();
 	}
 
 	//BattleStatusの更新
@@ -62,8 +64,16 @@ public class GameManager : MonoBehaviour {
 		SetBattleStatus (BattleStatus.START);
 	}
 
+	//時間切れだったらゲーム終了
 	void WatchTimer(){
 		if (timeManager.time <= 0 && battleStatus  != BattleStatus.END) {
+			SetBattleStatus (BattleStatus.END);
+		}
+	}
+
+	//プレイヤーが残り一人じゃないかどうかcheck
+	void WatchRanking(){
+		if (ScoreManager.Instance.top == GameDataManager.Instance.PlayerIDList.Count - 1) {
 			SetBattleStatus (BattleStatus.END);
 		}
 	}
