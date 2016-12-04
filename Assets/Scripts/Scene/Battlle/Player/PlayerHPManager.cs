@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class PlayerHPManager : MonoBehaviour {
+public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 
 	public GameObject[] playerHpImage = new GameObject[4];
 	PlayerModel playerModel;
@@ -27,7 +27,8 @@ public class PlayerHPManager : MonoBehaviour {
 		}
 	}
 
-	void ShowHP(int playerID, int stock){
+	public void ShowHP(int playerID, int stock){
+		Debug.Log("落ちた");
 		switch (stock) {
 		case 4:
 			playerHpImage [playerID - 1].transform.FindChild ("hp5").gameObject.SetActive (false);

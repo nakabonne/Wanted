@@ -74,6 +74,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		PlayerModel playerModel = GetComponent<PlayerModel> ();
 		playerModel.stock--;
+		PlayerHPManager.Instance.ShowHP(playerModel.PlayerID,playerModel.stock);
 		//復活させる
 		Invoke ("Return", 1.5f);
 	}
