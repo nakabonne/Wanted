@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	bool isStock = true;
 
+	PlayerModel playerModel;
+
 	Vector3 startPos;
 	// Use this for initialization
 	void Start () {
@@ -19,6 +21,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		PlayerInput.Instance.playerMoveMap.Add (_model.PlayerID, this);
 		//最初のポジションを保存
 		Invoke("SaveStartPos",2.0f);
+		playerModel = GetComponent<PlayerModel> ();
 
 	}
 	//最初のポジションを保存
@@ -50,7 +53,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//地面があるかチェックするメソッド
 	bool IsGround()
 	{
-		if (this.transform.position.y <= 0 && isStock) {
+		if (this.transform.position.y <= -0.5f && isStock) {
 			//ストックを減らす
 			CutBackStock ();
 			isStock = false;
@@ -86,7 +89,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//ストックを減らす
 	void CutBackStock()
 	{
-		PlayerModel playerModel = GetComponent<PlayerModel> ();
 		playerModel.stock--;
 		PlayerHPManager.Instance.ShowHP(playerModel.PlayerID,playerModel.stock);
 		//復活させる
@@ -96,6 +98,8 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//復活する
 	void Return()
 	{
+		//ストックが0以上の場合のみ復活
+		if (playerModel.stock <= 0) return;
 		//位置を戻す
 		transform.position = startPos;
 		isStock = true;
