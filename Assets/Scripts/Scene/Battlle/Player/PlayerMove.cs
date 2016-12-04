@@ -29,11 +29,19 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 		//スタートポジションの下にあるブロックの初期位置を保存
 		startPosBlockPos = StartPosBlock().transform.position; 
+
+
 	}
 
 	void Update(){
 		if (isRanked = false) {
 		}
+	}
+	//
+	void SendHP()
+	{
+		PlayerHPManager.Instance.playerHp[0] = playerModel.stock;
+		//PlayerHPManager.Instance.playerHp [0] = playerModel.stock;
 	}
 
 	//スタートポジションのブロックを返す
@@ -71,7 +79,9 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//地面があるかチェックするメソッド
 	bool IsGround()
 	{
+		//落ちた時の処理
 		if (this.transform.position.y <= -0.5f && isStock) {
+
 			//ストックを減らす
 			CutBackStock ();
 			isStock = false;
@@ -158,6 +168,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//爆風を受けた時の処理
 	public void ReceiveBlast()
 	{
+
 		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);
 	}
 
