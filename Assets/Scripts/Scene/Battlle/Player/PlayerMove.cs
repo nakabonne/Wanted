@@ -62,7 +62,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		PlayerModel playerModel = playerModelObj.GetComponent<PlayerModel> ();
 		if (gameObject.tag == "Player1") {
-			playerModel.stock1--;
+			playerModel.stock--;
 		}
 
 		Invoke ("Return", 2.0f);
