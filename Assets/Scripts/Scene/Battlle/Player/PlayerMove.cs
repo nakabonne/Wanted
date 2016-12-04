@@ -6,9 +6,10 @@ using DG.Tweening;
 public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	public float moveSpeed = 0.1f;
-	private Vector2 rotate;
 
 	private PlayerModel _model;
+
+	bool isStock = true;
 
 	Vector3 startPos;
 	// Use this for initialization
@@ -26,20 +27,6 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	}
 
 	public void Move(Vector2 dir){
-		Debug.Log (dir);
-		if (rotate != dir) {
-			rotate = dir;
-			if (rotate == Vector2.down) {
-				this.transform.eulerAngles = new Vector3 (0, 180, 0);
-			} else if (rotate == Vector2.up) {
-				this.transform.eulerAngles = new Vector3 (0, 0, 0);
-			} else if (rotate == Vector2.right) {
-				this.transform.eulerAngles = new Vector3 (0, 90, 0);
-			} else if (rotate == Vector2.left){
-				this.transform.eulerAngles = new Vector3 (0, 270, 0);
-			}
-		}
-
 		//足元に地面がなかったら移動は不可
 		if (IsGround ()) {
 			this.transform.position += new Vector3(dir.x, 0, dir.y)  * moveSpeed;
@@ -49,9 +36,10 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//地面があるかチェックするメソッド
 	bool IsGround()
 	{
-		if (this.transform.position.y <= 0) {
+		if (this.transform.position.y <= 0 && isStock) {
 			//ストックを減らす
 			CutBackStock ();
+			isStock = false;
 			return false;
 		}
 		return true;
@@ -95,6 +83,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		//位置を戻す
 		transform.position = startPos;
+		isStock = true;
 	}
 
 	//爆風を受けた時の処理
