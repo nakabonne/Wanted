@@ -84,9 +84,13 @@ public class Bomb : MonoBehaviour {
 	IEnumerator PutExplosion(string Walldirection){
 		yield return new WaitForSeconds(1.0f);
 		//四方向に生成
+		//上
 		Instantiate (explosions[0], transform.position + transform.forward, Quaternion.identity);
+		//下
 		Instantiate (explosions[1], transform.position - transform.forward, Quaternion.identity);
+		//左
 		Instantiate (explosions[2], transform.position - transform.right , Quaternion.identity);
+		//右
 		Instantiate (explosions[3], transform.position + transform.right, Quaternion.identity);
 
 		//爆風範囲内に障害物があった場合、その方向にあるexplosionの大きさを調整
