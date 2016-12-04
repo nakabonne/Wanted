@@ -8,6 +8,7 @@ public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 	public GameObject[] playerHpImage = new GameObject[4];
 	public float[] playerHp = new float[4];
 
+
 	void Start(){
 		switch (GameDataManager.Instance.PlayerIDList.Count) {
 		case 4:
@@ -25,7 +26,11 @@ public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 			playerHpImage [1].SetActive (false);
 			break;
 		}
+
+		//---------------
+
 	}
+
 
 	public void ShowHP(int playerID, int stock){
 		switch (stock) {
