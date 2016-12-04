@@ -7,10 +7,11 @@ using UniRx;
 
 public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 
-	public GameObject TimeManager;
-
 	public Text timer;
 	public Text countDown;
+
+	public GameObject resultCanvas;
+	public GameObject mainCanvas;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 	
 	// Update is called once per frame
 	void Update () {
-		timer.text = TimeManager.GetComponent<TimeManager> ().time.ToString ("f2");
+		timer.text = TimeManager.Instance.time.ToString ("f2");
 	}
 
 	//カウントダウンを始める
@@ -35,6 +36,22 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 				countDown.text = "";
 			});
 		}
+	}
+
+	//Finish文
+	public void Finish(){
+		if (TimeManager.Instance.time == 0) {
+			countDown.text = "Finish";
+			countDown.gameObject.transform.DOShakeScale (1f).OnComplete (() => {
+				countDown.text = "";
+			});
+		}
+	}
+
+	//Resultを表示
+	public void Result(){
+		resultCanvas.SetActive (true);
+		mainCanvas.SetActive (false);
 	}
 
 	//Playerを生成する
@@ -62,7 +79,7 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 		}
 		GameObject obj = ResourcesManager.Instance.GetModel(charaName);
 		GameObject chara = Instantiate (obj, pos, Quaternion.Euler(new Vector3(0,180,0))) as GameObject;
-		chara.transform.localScale = Vector3.one * 2f;
+		chara.transform.localScale = Vector3.one * 1f;
 		chara.GetComponent<PlayerModel> ().PlayerID = playerID;
 	}
 

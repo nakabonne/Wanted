@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour {
+public class TimeManager : SingletonMonoBehaviour<TimeManager> {
 
 	[SerializeField]
-	static float timeLimit = 100;
+	static float timeLimit = 5;
 	public float time = timeLimit;
 	[SerializeField]
 	bool isStarted = false;
@@ -18,6 +18,9 @@ public class TimeManager : MonoBehaviour {
 	void Update () {
 		if (isStarted) {
 			CountDown ();
+			if (time < 0.0f) {
+				time = 0.0f;
+			}
 		}
 	}
 

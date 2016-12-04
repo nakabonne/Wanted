@@ -15,7 +15,7 @@ public class Test : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown("space")){
-			StartCoroutine(StageManager.GetComponent<Stage>().Beam (this.transform.position,this.transform.forward));
+			Stage.Instance.Beam(this.transform.position,this.transform.eulerAngles.y);
 		}
 
 		if(Input.GetKeyDown(KeyCode.S)){

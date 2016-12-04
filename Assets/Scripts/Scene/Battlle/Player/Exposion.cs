@@ -24,11 +24,12 @@ public class Exposion : MonoBehaviour {
 	//衝突処理
 	void OnTriggerEnter(Collider collider)
 	{
-		//プレイヤーに当たったら吹っ飛ばす
-		if (collider.tag == "Player1" || collider.tag == "Player2" || collider.tag == "Player3" || collider.tag == "Player4") {
-			PlayerMove playerMove = collider.gameObject.GetComponent<PlayerMove> ();
-			playerMove.ReceiveBlast ();
-		}
+		collider.gameObject.SendMessage ("ReceiveBlast");
+//		//プレイヤーに当たったら吹っ飛ばす
+//		if (collider.tag == "Player1" || collider.tag == "Player2" || collider.tag == "Player3" || collider.tag == "Player4") {
+//			PlayerMove playerMove = collider.gameObject.GetComponent<PlayerMove> ();
+//			playerMove.ReceiveBlast ();
+//		}
 			
 	}
 
