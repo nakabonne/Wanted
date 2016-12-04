@@ -10,4 +10,11 @@ public class PlayerDamageTest : MonoBehaviour {
 	{
 		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);
 	}
+	public int[] playerHp = new int[4];
+
+	void Start()
+	{
+		playerHp [0] = 1;
+		Debug.Log (playerHp [0]);
+	}
 }

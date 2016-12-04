@@ -6,7 +6,7 @@ using UniRx;
 public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 
 	public GameObject[] playerHpImage = new GameObject[4];
-	public float[] playerHp = new float[4];
+	public int[] playerHp = new int[]{5,5,5,5};
 
 
 	void Start(){
