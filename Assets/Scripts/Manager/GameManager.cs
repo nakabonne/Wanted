@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -41,8 +42,10 @@ public class GameManager : MonoBehaviour {
 			break;
 		case BattleStatus.END:
 			timeManager.EndCount ();
+			BattleUI.Instance.Finish ();
 			PlayerInput.Instance.canInput = false;
 			Debug.Log ("end");
+			StartCoroutine (goResult ());
 			break;
 		}
 	}
@@ -62,6 +65,11 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 		UIManager.GetComponent<BattleUI> ().setCountDown (0);
 		SetBattleStatus (BattleStatus.START);
+	}
+
+	IEnumerator goResult(){
+		yield return new WaitForSeconds (1f);
+		BattleUI.Instance.Result ();
 	}
 
 	//時間切れだったらゲーム終了

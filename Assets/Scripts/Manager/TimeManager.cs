@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour {
+public class TimeManager : SingletonMonoBehaviour<TimeManager> {
 
 	[SerializeField]
-	static float timeLimit = 100;
+	static float timeLimit = 5;
 	public float time = timeLimit;
 	[SerializeField]
 	bool isStarted = false;
