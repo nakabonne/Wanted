@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeManager : SingletonMonoBehaviour<TimeManager> {
 
 	[SerializeField]
-	static float timeLimit = 5;
+	static float timeLimit = 100;
 	public float time = timeLimit;
 	[SerializeField]
 	bool isStarted = false;

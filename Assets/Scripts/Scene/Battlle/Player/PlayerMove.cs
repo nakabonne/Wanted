@@ -166,10 +166,17 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		this.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 	//爆風を受けた時の処理
-	public void ReceiveBlast()
+	public void ReceiveBlast(Vector3 pos)
 	{
-
-		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);
+		Vector3 move;
+		move = (this.transform.position - new Vector3 (pos.x, 0, pos.z)) * 2;
+		if (move.x < 0.5f) {
+			move.x *= 3;
+		}
+		if (move.z < 0.5f) {
+			move.z *= 3;
+		}
+		transform.DOLocalMove (this.transform.position + move, 1f);
 	}
 
 	//スタート時に足元にあるブロックが元の位置にない（落ちてしまっている時）trueを返す

@@ -85,14 +85,17 @@ public class Bomb : MonoBehaviour {
 		yield return new WaitForSeconds(1.0f);
 		//四方向に生成
 		//上
-		Instantiate (explosions[0], transform.position + transform.forward, Quaternion.identity);
+		GameObject exp = Instantiate (explosions[0], transform.position + transform.forward, Quaternion.identity) as GameObject;
+		exp.GetComponent<Exposion> ().bomb = this.transform.position;
 		//下
-		Instantiate (explosions[1], transform.position - transform.forward, Quaternion.identity);
+		exp = Instantiate (explosions[1], transform.position - transform.forward, Quaternion.identity) as GameObject;
+		exp.GetComponent<Exposion> ().bomb = this.transform.position;
 		//左
-		Instantiate (explosions[2], transform.position - transform.right , Quaternion.identity);
+		exp = Instantiate (explosions[2], transform.position - transform.right , Quaternion.identity) as GameObject;
+		exp.GetComponent<Exposion> ().bomb = this.transform.position;
 		//右
-		Instantiate (explosions[3], transform.position + transform.right, Quaternion.identity);
-
+		exp = Instantiate (explosions[3], transform.position + transform.right, Quaternion.identity) as GameObject;
+		exp.GetComponent<Exposion> ().bomb = this.transform.position;
 		//爆風範囲内に障害物があった場合、その方向にあるexplosionの大きさを調整
 		switch (Walldirection) 
 		{

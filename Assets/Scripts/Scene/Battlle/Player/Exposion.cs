@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Exposion : MonoBehaviour {
 
+	public Vector3 bomb;
+
 	// Use this for initialization
 	void Start () {
 		Destroy (gameObject, 1.0f);
@@ -24,7 +26,7 @@ public class Exposion : MonoBehaviour {
 	//衝突処理
 	void OnTriggerEnter(Collider collider)
 	{
-		collider.gameObject.SendMessage ("ReceiveBlast");
+		collider.gameObject.SendMessage ("ReceiveBlast",bomb);
 //		//プレイヤーに当たったら吹っ飛ばす
 //		if (collider.tag == "Player1" || collider.tag == "Player2" || collider.tag == "Player3" || collider.tag == "Player4") {
 //			PlayerMove playerMove = collider.gameObject.GetComponent<PlayerMove> ();
