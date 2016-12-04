@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
 			timeManager.EndCount ();
 			BattleUI.Instance.Finish ();
 			PlayerInput.Instance.canInput = false;
+			ScoreManager.Instance.DecidedScore ();
 			Debug.Log ("end");
 			StartCoroutine (goResult ());
 			break;
