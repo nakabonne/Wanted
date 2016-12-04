@@ -40,9 +40,13 @@ public class Beam : MonoBehaviour {
 		{
 			//Rayが当たったオブジェクトのtagがGroundだったら
 			if (hit.collider.tag == "Ground"){
+				//ビームをうつ
+				Stage.Instance.Beam (this.transform.position, this.transform.forward);
+				Debug.Log ("へいへいへい");
+
 				//GameObject ground = hit.collider.gameObject;
-				Stage stage = hit.collider.gameObject.GetComponent<Stage> ();
-				stage.Beam (transform.position, transform.forward);
+//				Stage stage = hit.collider.gameObject.GetComponent<Stage> ();
+//				stage.Beam (transform.position, transform.forward);
 			}
 		}
 	}
