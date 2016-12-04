@@ -11,7 +11,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager> {
 	//死んだ時点でセット
 	public void SetRanking(int playerID){
 		ranking [top] = playerID;
-		ranking [top + 1] = 1;
+		ranking [top + 1] = 2;
 		top++;
 	}
 		
