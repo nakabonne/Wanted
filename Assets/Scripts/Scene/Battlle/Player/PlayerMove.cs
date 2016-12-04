@@ -109,13 +109,18 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//復活する
 	void Return()
 	{
-		//ストックが0以上の場合のみ復活
+		//ストックが0になったらSetRankingを実行
 		if (playerModel.stock <= 0) {
 			ScoreManager.Instance.SetRanking (playerModel.PlayerID);
 		}
+		if (playerModel.stock <= 0) return;
 		//スタート時に足元にあったブロックがない場合は生成位置をランダムに
 		if (StartBlockIsWrongPos ()) {
-			transform.position = new Vector3 (Random.Range (0, 12), startPos.y, Random.Range (0, 12));
+			RandomRespawn ();
+			//地面がない限りランダムにリスポーンを続ける
+			while(IsNoGround()){
+				RandomRespawn ();
+			}
 		} else {
 			//位置を戻す
 			transform.position = startPos;
@@ -123,6 +128,21 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		isStock = true;
 	}
 
+	//足元にブロックがない場合trueを返す
+	bool IsNoGround()
+	{
+		return Stage.Instance.stageCube [Mathf.FloorToInt (transform.position.x), Mathf.FloorToInt (transform.position.z)].transform.position != new Vector3 (transform.position.x, -0.5f, transform.position.z);
+	}
+	//ランダム生成の位置
+	Vector3 RandomRespawnPos()
+	{
+		return new Vector3 (Random.Range (0, 12), startPos.y, Random.Range (0, 12));
+	}
+	//ランダムに生成する
+	void RandomRespawn()
+	{
+		transform.position = RandomRespawnPos ();
+	}
 	//爆風を受けた時の処理
 	public void ReceiveBlast()
 	{
