@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/FireExplosionVFX/Art/Textures.meta~ec9e3d77fc2ce20c8767c50989db066d87cb060f.meta~168d4e393ad372f6a6bf91b801e420eb9eba0f20.meta
 guid: 051ca64c24e52874c86e8c4d34ddfc41
 timeCreated: 1480834088
+=======
+guid: 944225cd62a3d4e249938226e0e41ca4
+timeCreated: 1480832879
+>>>>>>> 83a4807a8f932309481015aba264088f3d570681:Assets/FireExplosionVFX/Art/Textures.meta~ec9e3d77fc2ce20c8767c50989db066d87cb060f.meta~168d4e393ad372f6a6bf91b801e420eb9eba0f20.meta
 licenseType: Free
 DefaultImporter:
   userData: 
