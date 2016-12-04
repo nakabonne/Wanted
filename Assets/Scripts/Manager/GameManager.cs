@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
 
 	//プレイヤーが残り一人じゃないかどうかcheck
 	void WatchRanking(){
-		if (ScoreManager.Instance.top == GameDataManager.Instance.PlayerIDList.Count - 1) {
+		if (ScoreManager.Instance.top == GameDataManager.Instance.PlayerIDList.Count - 1 && battleStatus  != BattleStatus.END) {
 			SetBattleStatus (BattleStatus.END);
 		}
 	}
