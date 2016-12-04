@@ -11,18 +11,16 @@ public class Bomb : MonoBehaviour {
 	Exposion exposion;
 	// Use this for initialization
 	void Start () {
-		SearchWall ();
+		StartCoroutine(PutExplosion (""));
+		//SearchWall ();
 		//数秒後に爆発
 		//Invoke ("Explosion", stayTime);
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
 		
 	}
+
 	//障害物があるかどうかをチェック
-	void SearchWall()
+	/*void SearchWall()
 	{
 		//Rayの作成　　　　　　　↓Rayを飛ばす原点　　　↓Rayを飛ばす方向
 		Ray rayup = new Ray(transform.position, new Vector3 (0, 0, 1));
@@ -79,7 +77,8 @@ public class Bomb : MonoBehaviour {
 		} else {
 			StartCoroutine (PutExplosion (" "));
 		}
-	}
+	}*/
+		
 	//エフェクト生成
 	IEnumerator PutExplosion(string Walldirection){
 		yield return new WaitForSeconds(1.0f);
