@@ -34,6 +34,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	public void PutBomb()
 	{
 		Debug.Log ("Bombおくよ");
-		Instantiate (bomb, transform.position, Quaternion.identity);
+		Instantiate (bomb, transform.position + Vector3.up * 0.25f, Quaternion.identity);
 	}
 }

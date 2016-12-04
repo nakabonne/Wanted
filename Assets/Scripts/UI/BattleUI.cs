@@ -62,7 +62,7 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 		}
 		GameObject obj = ResourcesManager.Instance.GetModel(charaName);
 		GameObject chara = Instantiate (obj, pos, Quaternion.Euler(new Vector3(0,180,0))) as GameObject;
-		chara.transform.localScale = Vector3.one * 2f;
+		chara.transform.localScale = Vector3.one * 1f;
 		chara.GetComponent<PlayerModel> ().PlayerID = playerID;
 	}
 
