@@ -15,6 +15,8 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	PlayerModel playerModel;
 
 	Vector3 startPos;
+
+	Vector3 startPosBlockPos;
 	// Use this for initialization
 	void Start () {
 		_model = this.GetComponent<PlayerModel> ();
@@ -23,7 +25,16 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		Invoke("SaveStartPos",2.0f);
 		playerModel = GetComponent<PlayerModel> ();
 
+		//スタートポジションの下にあるブロックの初期位置を保存
+		startPosBlockPos = StartPosBlock().transform.position; 
 	}
+
+	//スタートポジションのブロックを返す
+	GameObject StartPosBlock()
+	{
+		return Stage.Instance.stageCube [Mathf.FloorToInt(startPos.x),Mathf.FloorToInt(startPos.z)];
+	}
+
 	//最初のポジションを保存
 	void SaveStartPos()
 	{
@@ -99,9 +110,16 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	void Return()
 	{
 		//ストックが0以上の場合のみ復活
-		if (playerModel.stock <= 0) return;
-		//位置を戻す
-		transform.position = startPos;
+		if (playerModel.stock <= 0) {
+			ScoreManager.Instance.SetRanking (playerModel.PlayerID);
+		}
+		//スタート時に足元にあったブロックがない場合は生成位置をランダムに
+		if (StartBlockIsWrongPos ()) {
+			transform.position = new Vector3 (Random.Range (0, 12), startPos.y, Random.Range (0, 12));
+		} else {
+			//位置を戻す
+			transform.position = startPos;
+		}
 		isStock = true;
 	}
 
@@ -109,6 +127,12 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	public void ReceiveBlast()
 	{
 		transform.DOLocalMove (new Vector3 (3f, 2, 0), 2f).SetEase (Ease.InOutQuart);
+	}
+
+	//スタート時に足元にあるブロックが元の位置にない（落ちてしまっている時）trueを返す
+	bool StartBlockIsWrongPos()
+	{
+		return StartPosBlock ().transform.position != startPosBlockPos;
 	}
 	//落ちているかどうか
 //	bool isDrop()

@@ -10,7 +10,7 @@ public class Stage : SingletonMonoBehaviour<Stage> {
 	//ビームの有効マス
 	static int b = 5;
 
-	GameObject[,] stageCube = new GameObject[n,n];
+	public GameObject[,] stageCube = new GameObject[n,n];
 
 	public GameObject stageCubePrefab;
 
