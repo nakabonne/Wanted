@@ -8,7 +8,7 @@ public class Result : MonoBehaviour {
 	public Text result;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		string score = null;
 
 		for (int i = 0; i < GameDataManager.Instance.PlayerIDList.Count; i++) {
