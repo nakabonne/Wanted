@@ -6,28 +6,35 @@ using UniRx;
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager> {
 
 	public int[] ranking = new int[4];
+	public int[] playerHp = new int[4];
 	public int top = 0;
 
 	//死んだ時点でセット
 	public void SetRanking(int playerID){
 		ranking [top] = playerID;
-		ranking [top + 1] = 1;
 		top++;
+	}
+
+	public void SetHP(int playerID, int HP){
+		playerHp [playerID - 1] = HP;
 	}
 		
 	//最終決定
-	/*public void DecidedScore(){
+	public void DecidedScore(){
 		while (top < GameDataManager.Instance.PlayerIDList.Count) {
-			int min = 0;
+			int min = 6;
+			int minPlayer = 0;
 			for (int i = 0; i < GameDataManager.Instance.PlayerIDList.Count; i++) {
-				if (stock [i] != 0) {
-					if (stock [min] > stock [i]) {
-						min = i;
+				if (playerHp [i] != 0) {
+					Debug.Log (i);
+					if (min > playerHp [i]) {
+						min = playerHp[i];
+						minPlayer = i;
 					}
 				}
 			}
-			SetRanking (min);
-			stock [min] = 0;
+			SetRanking (minPlayer+1);
+			playerHp [minPlayer] = 0;
 		}
-	}*/
+	}
 }

@@ -40,12 +40,10 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 
 	//Finish文
 	public void Finish(){
-		if (TimeManager.Instance.time == 0) {
 			countDown.text = "Finish";
 			countDown.gameObject.transform.DOShakeScale (1f).OnComplete (() => {
 				countDown.text = "";
 			});
-		}
 	}
 
 	//Resultを表示

@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		//スタートポジションの下にあるブロックの初期位置を保存
 		startPosBlockPos = StartPosBlock().transform.position; 
 
-
+		ScoreManager.Instance.SetHP (playerModel.PlayerID, playerModel.stock);
 	}
 
 	void Update(){
@@ -118,6 +118,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	void CutBackStock()
 	{
 		playerModel.stock--;
+		ScoreManager.Instance.SetHP (playerModel.PlayerID, playerModel.stock);
 		PlayerHPManager.Instance.ShowHP(playerModel.PlayerID,playerModel.stock);
 		//復活させる
 		Invoke ("Return", 1.5f);
