@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	private PlayerModel _model;
 
+	bool isStock = true;
+
 	Vector3 startPos;
 	// Use this for initialization
 	void Start () {
@@ -48,9 +50,10 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//地面があるかチェックするメソッド
 	bool IsGround()
 	{
-		if (this.transform.position.y <= 0) {
+		if (this.transform.position.y <= 0 && isStock) {
 			//ストックを減らす
 			CutBackStock ();
+			isStock = false;
 			return false;
 		}
 		return true;
@@ -85,6 +88,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		PlayerModel playerModel = GetComponent<PlayerModel> ();
 		playerModel.stock--;
+		PlayerHPManager.Instance.ShowHP(playerModel.PlayerID,playerModel.stock);
 		//復活させる
 		Invoke ("Return", 1.5f);
 	}
@@ -94,6 +98,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		//位置を戻す
 		transform.position = startPos;
+		isStock = true;
 	}
 
 	//爆風を受けた時の処理
