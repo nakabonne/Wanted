@@ -109,11 +109,13 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	//復活する
 	void Return()
 	{
-		//ストックが0になったらSetRankingを実行
+		//ストックが0になったらSetRankingを実行し、このオブジェクトを非表示にする
 		if (playerModel.stock <= 0) {
 			ScoreManager.Instance.SetRanking (playerModel.PlayerID);
+			gameObject.SetActive (false);
+			return;
 		}
-		if (playerModel.stock <= 0) return;
+
 		//スタート時に足元にあったブロックがない場合は生成位置をランダムに
 		if (StartBlockIsWrongPos ()) {
 			RandomRespawn ();
