@@ -15,10 +15,14 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		_model = this.GetComponent<PlayerModel> ();
 		PlayerInput.Instance.playerMoveMap.Add (_model.PlayerID, this);
 		//最初のポジションを保存
-		startPos = transform.position;
+		Invoke("SaveStartPos",2.0f);
 
 	}
-
+	//最初のポジションを保存
+	void SaveStartPos()
+	{
+		startPos = transform.position;
+	}
 
 	public void Move(Vector2 dir){
 		//足元に地面がなかったら移動は不可
