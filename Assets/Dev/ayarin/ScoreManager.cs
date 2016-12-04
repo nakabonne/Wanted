@@ -13,20 +13,20 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager> {
 		ranking [top] = playerID;
 		top++;
 	}
-
+		
 	//最終決定
-	public void DecidedScore(){
+	/*public void DecidedScore(){
 		while (top < GameDataManager.Instance.PlayerIDList.Count) {
 			int min = 0;
 			for (int i = 0; i < GameDataManager.Instance.PlayerIDList.Count; i++) {
-				if (PlayerHPManager.Instance.playerHP[i] != 0) {
-					if (PlayerHPManager.Instance.playerHP[min] > PlayerHPManager.Instance.playerHP[i]) {
+				if (stock [i] != 0) {
+					if (stock [min] > stock [i]) {
 						min = i;
 					}
 				}
 			}
 			SetRanking (min);
-			PlayerHPManager.Instance.playerHP[min] = 0;
+			stock [min] = 0;
 		}
-	}
+	}*/
 }

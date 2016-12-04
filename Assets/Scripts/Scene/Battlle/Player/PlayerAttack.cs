@@ -16,13 +16,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			PutBomb ();
-		}
-		if (Input.GetMouseButtonDown (1)) {
-			PutBeam ();
-		}
-		
 	}
 	//ビームを出す
 	public void PutBeam()

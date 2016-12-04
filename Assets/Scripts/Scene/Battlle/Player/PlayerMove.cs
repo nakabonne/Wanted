@@ -5,12 +5,14 @@ using DG.Tweening;
 
 public class PlayerMove : MonoBehaviour, IPlayerMove {
 
-	public float moveSpeed = 0.1f;
+	public float moveSpeed = 0.05f;
 	private Vector2 rotate;
 
 	private PlayerModel _model;
 
 	bool isStock = true;
+
+	bool isRanked = false;
 
 	PlayerModel playerModel;
 
@@ -27,6 +29,11 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 		//スタートポジションの下にあるブロックの初期位置を保存
 		startPosBlockPos = StartPosBlock().transform.position; 
+	}
+
+	void Update(){
+		if (isRanked = false) {
+		}
 	}
 
 	//スタートポジションのブロックを返す
@@ -112,6 +119,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		//ストックが0になったらSetRankingを実行し、このオブジェクトを非表示にする
 		if (playerModel.stock <= 0) {
 			ScoreManager.Instance.SetRanking (playerModel.PlayerID);
+			isRanked = true;
 			gameObject.SetActive (false);
 			return;
 		}
@@ -126,6 +134,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 		} else {
 			//位置を戻す
 			transform.position = startPos;
+			this.transform.eulerAngles = new Vector3 (0, 180, 0);
 		}
 		isStock = true;
 	}
@@ -144,6 +153,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	void RandomRespawn()
 	{
 		transform.position = RandomRespawnPos ();
+		this.transform.eulerAngles = new Vector3 (0, 180, 0);
 	}
 	//爆風を受けた時の処理
 	public void ReceiveBlast()
@@ -156,6 +166,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	{
 		return StartPosBlock ().transform.position != startPosBlockPos;
 	}
+
 	//落ちているかどうか
 //	bool isDrop()
 //	{

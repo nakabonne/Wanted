@@ -6,9 +6,7 @@ using UniRx;
 public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 
 	public GameObject[] playerHpImage = new GameObject[4];
-	public int[] playerHP = new int[4];
-
-	PlayerModel playerModel;
+	public float[] playerHp = new float[4];
 
 	void Start(){
 		switch (GameDataManager.Instance.PlayerIDList.Count) {
@@ -30,7 +28,6 @@ public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 	}
 
 	public void ShowHP(int playerID, int stock){
-		Debug.Log (playerID + "," + stock + ",");
 		switch (stock) {
 		case 4:
 			playerHpImage [playerID - 1].transform.FindChild ("hp5").gameObject.SetActive (false);
@@ -48,7 +45,6 @@ public class PlayerHPManager : SingletonMonoBehaviour<PlayerHPManager> {
 			playerHpImage [playerID - 1].transform.FindChild ("hp1").gameObject.SetActive (false);
 			break;
 		}
-		//playerHP [playerID - 1] = stock;
 	}
 			
 				
