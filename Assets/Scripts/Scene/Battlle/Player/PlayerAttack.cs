@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	
 	public GameObject bomb;
+	bool isBomb = false;
 
 	private PlayerModel _model;
 
@@ -26,7 +27,17 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	//ボムを置く
 	public void PutBomb()
 	{
-		Debug.Log ("Bombおくよ");
-		Instantiate (bomb, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+		if (isBomb == false) {
+			Debug.Log ("Bombおくよ");
+			Instantiate (bomb, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+			isBomb = true;
+			StartCoroutine (PutBombCoroutine ());
+		}
+	}
+
+	IEnumerator PutBombCoroutine(){
+		yield return new WaitForSeconds (1f);
+		Debug.Log ("bomb");
+		isBomb = false;
 	}
 }

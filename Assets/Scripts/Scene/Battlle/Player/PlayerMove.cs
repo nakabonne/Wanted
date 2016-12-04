@@ -169,13 +169,16 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 	public void ReceiveBlast(Vector3 pos)
 	{
 		Vector3 move;
-		move = (this.transform.position - new Vector3 (pos.x, 0, pos.z)) * 2;
-		if (move.x < 0.5f) {
-			move.x *= 3;
+		move = (this.transform.position - new Vector3 (pos.x, 0, pos.z));
+		if (move.x < 1f) {
+			move.x *= 5;
 		}
-		if (move.z < 0.5f) {
-			move.z *= 3;
+		if (move.z < 1f) {
+			move.z *= 5;
 		}
+		move.x = 1 / move.x * 4;
+		move.z = 1 / move.z * 4;
+
 		transform.DOLocalMove (this.transform.position + move, 1f);
 	}
 
