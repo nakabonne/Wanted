@@ -27,7 +27,7 @@ public class CharacterSelectView : MonoBehaviour {
 			break;
 		case 4:
 			label [playerID - 1].SetActive (true);
-			// 4体目のプレハブを呼ぶ
+			charaName = "Utc2";
 			break;
 		
 		}

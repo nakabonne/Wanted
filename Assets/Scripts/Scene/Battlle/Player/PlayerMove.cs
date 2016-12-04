@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayerMove : MonoBehaviour, IPlayerMove {
 
-	public float moveSpeed = 0.05f;
+	public float moveSpeed = 0.08f;
 	private Vector2 rotate;
 
 	private PlayerModel _model;
@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour, IPlayerMove {
 
 	PlayerModel playerModel;
 
-	Vector3 startPos;
+	public Vector3 startPos;
 
 	Vector3 startPosBlockPos;
 	// Use this for initialization

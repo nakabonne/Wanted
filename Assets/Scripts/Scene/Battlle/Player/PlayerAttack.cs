@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	{
 		if (isBomb == false) {
 			Debug.Log ("Bombおくよ");
-			Instantiate (bomb, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+			Instantiate (bomb, transform.position + Vector3.up * 0.5f, Quaternion.identity);
 			isBomb = true;
 			StartCoroutine (PutBombCoroutine ());
 		}

@@ -70,8 +70,8 @@ public class BattleUI : SingletonMonoBehaviour<BattleUI> {
 			pos = new Vector3 (0, 1, 0);
 			break;
 		case 4:
-			// 4体目のプレハブを呼ぶ
-			pos = new Vector3(11,1,0);
+			charaName = "BattleUtc2";
+			pos = new Vector3(11, 1, 0);
 			break;
 
 		}
