@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
 	void OnChangedStatus(BattleStatus newStatus){
 		switch (newStatus) {
 		case BattleStatus.WAIT:
+			ScoreManager.Instance.Init ();
 			BattleUI.Instance.SpawnAll ();
 			timeManager.InitTimer ();
 			StartCoroutine (wait ());

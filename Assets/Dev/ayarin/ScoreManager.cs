@@ -9,6 +9,10 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager> {
 	public int[] playerHp = new int[4];
 	public int top = 0;
 
+	public void Init(){
+		top = 0;
+	}
+
 	//死んだ時点でセット
 	public void SetRanking(int playerID){
 		ranking [top] = playerID;
