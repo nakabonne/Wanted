@@ -5,20 +5,13 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	
 	public GameObject bomb;
-	//public GameObject beam;
-
-	public GameObject stageObj;
-
-	Stage stage;
 
 	private PlayerModel _model;
+
 	// Use this for initialization
 	void Start () {
 		_model = this.GetComponent<PlayerModel> ();
 		PlayerInput.Instance.playerAttackMap.Add (_model.PlayerID, this);
-
-		stageObj = GameObject.Find ("Stage");
-		stage = stageObj.GetComponent<Stage> ();
 	}
 	
 	// Update is called once per frame
@@ -35,8 +28,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack {
 	public void PutBeam()
 	{
 		Debug.Log ("Beamうつよ");
-		stage.Beam (this.transform.position, this.transform.forward);
-		//Stage.Instance.Beam (this.transform.position, this.transform.forward);
+		Stage.Instance.Beam (this.transform.position, this.transform.forward);
 	}
 	//ボムを置く
 	public void PutBomb()
